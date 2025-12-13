@@ -152,15 +152,16 @@ position: fixed;
     top: 140px; /* Начинается под шапкой */
     left: 0; 
     width: var(--menu-width); /* Ширина 200px */
-    transform: translate(203%, 0);
+
     background: #fff3dc;
     list-style: none;
     padding: 0;
     margin: 0;
     /* Скрыто по умолчанию: */
-    height: 100px;          /* <-- НЕТ ВЫСОТЫ */
+    height: 0;          /* <-- НЕТ ВЫСОТЫ */
     opacity: 0;         /* <-- НЕВИДИМОЕ */
     overflow: hidden;   /* <-- СКРЫВАЕМ СОДЕРЖИМОЕ */
+    transform: translateX(-100%);
     transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out; 
     z-index: 90; 
     border-color:hsl(0, 90%, 28%);
