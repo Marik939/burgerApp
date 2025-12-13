@@ -1,0 +1,541 @@
+/* --- ЦВЕТА И ОСНОВНОЙ МАКЕТ --- */
+:root {
+    --color-red: hsl(0, 90%, 28%); /* Ваш красный цвет */
+    --color-yellow: hsl(37, 89%, 76%); /* Ваш светло-желтый фон */
+    --color-orange: hsl(0, 90%, 28%); /* Ваш оранжевый/акцентный цвет */
+    --color-button: hsl(0, 90%, 28%); /* Ваш желтый цвет кнопки */
+    --menu-width: 200px;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+
+    background-color: #f0f0f0; 
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.mobile-container {
+    width: 100%;
+    max-width: 450px; 
+    min-height: 100vh;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow-x: hidden; /* <-- ДОЛЖНО БЫТЬ ТУТ */
+}
+
+.go-back-to-menu{
+position: fixed; 
+}
+/* 🔴 ШАПКА */
+/* 🔴 ШАПКА */
+.app-header {
+    background-color: var(--color-red); 
+    color: white;
+     text-shadow: 2px 2px 4px #000000;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    height: 145px;
+    position: fixed; /* ОСТАВЛЯЕМ FIXED! */
+    top: 0;
+    width: 100%;
+    max-width: 450px;
+    z-index: 100;
+    /* УБРАТЬ ЛЮБЫЕ TRANSFORM и TRANSITION */
+}
+
+/* 2. Секция `.content-wrapper` (Контент) */
+
+.content-wrapper {
+    /* ... (ваши существующие стили) ... */
+    padding-top: 120px; 
+    /* УБРАТЬ ЛЮБЫЕ TRANSFORM и TRANSITION */
+}
+
+.LOGO {
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+.slogan{
+    color: lch(87.8% 36.02 79.88);
+    font-size: 15px;
+    font-weight: bold;
+}
+.logo {
+    font-size: 35px;
+    font-weight: bold;
+}
+.logo-pic {
+    position: relative;
+    width: 120px;
+    align-items: center;
+    justify-content: center;
+}
+.header-btn {
+    padding: 20px;
+    align-self: flex-end;
+    color: white;
+     text-shadow: 2px 2px 4px #000000;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    z-index: 101; /* Убеждаемся, что кнопка меню всегда сверху */
+}
+.cart-link {
+    /* Чтобы ссылка не ломала Flexbox-распределение в шапке */
+    text-decoration: none; /* Убирает подчеркивание */
+    color: inherit;
+    display: flex; /* Важно для корректного размещения иконки и бейджа */
+    align-self: flex-end; /* Опускает ссылку к нижнему краю шапки, как мы настраивали */
+}
+/* ИКОНКА КОРЗИНЫ */
+.cart-icon-container {
+    position: relative;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-left: 35px;
+    padding: 20px;
+    align-self: flex-end;
+}
+.cart-badge {
+    position: absolute;
+    top: 8px; /* Скорректировано, чтобы соответствовало шапке */
+    right: 8px;
+    background-color: #ffd828;
+    color: hwb(0 4% 53%);
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7em;
+    font-weight: bold;
+    min-width: 15px;
+    text-align: center;
+    line-height: 1;
+}
+
+/* --- КОНТЕНТ И СДВИГ --- */
+.content-wrapper {
+    padding-top: 120px; /* Отступ, чтобы контент не перекрывался шапкой */
+    background-size: 350px;
+    padding-bottom: 50px;
+    max-width: 450px;
+    width: 100%;
+    overflow-y: auto; 
+    background-color: var(--color-yellow); 
+    /* Добавляем transition для сдвига */
+    transition: transform 0.3s ease-out; 
+    min-height: calc(100vh - 120px);
+}
+.page {
+    padding: 15px;
+}
+
+/* --- ИНТЕРАКТИВНОЕ МЕНЮ-СЛАЙДЕР --- */
+
+/* Скрываем чекбокс, который является триггером */
+#menu-toggle {
+    display: none;
+   
+}
+
+/* Меню по умолчанию скрыто (сдвинуто влево) */
+/* --- ИНТЕРАКТИВНОЕ МЕНЮ (НОВЫЙ ПОДХОД) --- */
+
+.dropdown {
+    position: fixed; /* Относительно .mobile-container */
+    top: 140px; /* Начинается под шапкой */
+    left: 0; 
+    width: var(--menu-width); /* Ширина 200px */
+    transform: translate(203%, 0);
+    background: #fff3dc;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* Скрыто по умолчанию: */
+    height: 100px;          /* <-- НЕТ ВЫСОТЫ */
+    opacity: 0;         /* <-- НЕВИДИМОЕ */
+    overflow: hidden;   /* <-- СКРЫВАЕМ СОДЕРЖИМОЕ */
+    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out; 
+    z-index: 90; 
+    border-color:hsl(0, 90%, 28%);
+    border-left:hsl(0, 90%, 28%); 
+     border-right:hsl(0, 90%, 28%); 
+
+}
+
+.dropdown li {
+    padding: 10px 15px;
+    white-space: nowrap; /* Не дает тексту переноситься */
+}
+/* ... остальные стили для .dropdown li a ... */
+.dropdown li a {
+    text-decoration: none;
+    color: var(--color-red);
+    font-weight: bold;
+    display: block;
+}
+
+/* OVERLAY (Затемнение) */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 80;
+    display: none; /* Скрыто по умолчанию */
+}
+
+
+/* --- АКТИВАЦИЯ МЕНЮ (CSS :checked) --- */
+
+/* Когда чекбокс отмечен: */
+/* --- АКТИВАЦИЯ МЕНЮ (CSS :checked) --- */
+
+/* Когда чекбокс отмечен: */
+#menu-toggle:checked ~ .dropdown {
+    /* Чтобы быть "короче" (как на вашем скриншоте 926616.jpg), 
+       используем фиксированную высоту, вмещающую 5-6 пунктов. */
+    height: 200px; /* <--- ИЗМЕНЕНИЕ: Достаточная высота для пунктов */
+    opacity: 1; 
+    border-radius: 9px;   /* <--- ВИДИМОЕ */
+    border-color: brown;
+    border-width: 3px;
+}
+
+/* Также необходимо показать затемнение (overlay) */
+#menu-toggle:checked ~ .overlay {
+    display: block; 
+}
+
+/* --- КАРТОЧКИ ПРОДУКТОВ --- */
+.product-card {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin: 60px;
+    position: relative; /* Важно для позиционирования модального окна */
+}
+.product-name-link {
+    text-decoration: none;
+    color: inherit;
+}
+.product-name {
+    margin:0;
+    font-size: 1.2em;
+    color: #333;
+}
+.product-price {
+    color: var(--color-orange);
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 0px;
+}
+
+/* 📝 МОДАЛЬНОЕ ОКНО (POPUP) - Активация через :target */
+.modal {
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    display: none; /* Скрыто по умолчанию */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Активация модального окна при совпадении ID с якорем URL */
+.modal:target {
+    display: flex; 
+}
+
+.modal-content {
+    background-color: #ffe8b2;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 350px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+    color:hsl(0, 90%, 28%); 
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none; /* Убираем подчеркивание у ссылки */
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+
+.details-box {
+    background-color: hwb(30 94% 0%);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+.details-box h4 {
+    color: var(--color-orange);
+    margin-top: 0;
+}
+.modal-price {
+    font-size: 1.5em;
+    color: var(--color-orange);
+    font-weight: bold;
+    text-align: center;
+    margin: 15px 0;
+}
+.add-to-cart-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--color-button); 
+    border: none;
+    color: hsl(33, 100%, 98%);
+    font-size: 1.1em;
+    font-weight: bold;
+     transition: background-color 0.1s;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.add-to-cart-btn:active,
+.add-to-cart-btn:hover {
+    background-color: var(--color-yellow); /* Меняет цвет на желтый */
+}
+.product-image1{
+    border-radius: 20px;
+}
+.img1{
+border-radius: 20px;
+}
+/* (Остальные стили, такие как .img, .product-image, .cart-total, .order-btn, оставлены без изменений) */
+
+
+
+
+
+/* --- ЦВЕТА И ВЫРАВНИВАНИЕ СТРАНИЦЫ КОРЗИНЫ --- */
+
+/* Фон страницы Корзины */
+.page-checkout .mobile-container {
+    background-color: #e6cfa3; /* Бежевый цвет из примера */
+    background-image: none;
+    display: flex; /* Используем Flexbox для прикрепления кнопки ORDER NOW к низу */
+    flex-direction: column;
+}
+/* Настройки страницы-контейнера */
+.cart-page-design {
+  /* Общая высота фиксированных элементов: ~284px */
+    padding-top: 284px; 
+    
+    /* Высота кнопки Order Now (примерно 60px) */
+    padding-bottom: 60px; 
+    
+    padding-left: 15px;
+    padding-right: 15px;
+    
+    /* <-- КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: Делаем контейнер Flex, чтобы управлять bottom alignment --> */
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 120px - 60px - 284px); /* Гарантируем, что контейнер занимает оставшееся место */
+    flex-grow: 1; /* Растягиваем на всю доступную высоту */
+}
+
+.cart-title {
+    position: fixed; /* Закрепляем на экране */
+    z-index: 50; 
+ top:5px;
+ align-self: center;
+    text-align: center;
+    color: var(--color-red); 
+    font-size: 40px;
+    margin:0 80px 0;
+}
+
+/* --- СТИЛИ ТОВАРНОЙ КАРТОЧКИ --- */
+
+.cart-item-design {
+position: fixed;
+    z-index: 40; 
+    top: 184px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 450px;
+
+    background-color: #f0e1c2; 
+    margin: 0;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    
+    /* <-- КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: Включаем Flexbox для центрирования --> */
+    display: flex;
+    flex-direction: column; /* Элементы идут сверху вниз */
+    align-items: center; /* Центрирует все дочерние элементы по горизонтали */
+}
+
+.item-header {
+   font-weight: bold;
+    color: var(--color-red);
+
+    /* Убедимся, что текст выровнен по левому краю */
+    text-align: center; 
+    padding: 10px; /* Убираем лишние отступы, если они есть */
+}
+
+.item-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item-image-container {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 20px 0; /* Добавляем вертикальные отступы */
+
+
+}
+
+.item-image {
+  width:100%;
+  justify-content: center;
+    height:100%;
+    border-radius: 9px;
+    display: flex;
+    margin: 10px;
+    object-fit: cover;
+    width: 160px;
+    height: 110px;
+}
+
+/* --- КОНТРОЛЛЕРЫ КОЛИЧЕСТВА (+ / –) --- */
+
+.item-controls {
+    display: flex;
+    align-items: center;
+}
+
+.control-btn {
+    display: block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    border-radius: 50%;
+    background-color: var(--color-red); /* Исходный цвет */
+    text-decoration: none;
+    transition: background-color 0.1s;
+    margin: 0 5px;
+}
+
+/* Имитация нажатия (меняет цвет на желтый при клике/наведении) */
+.control-btn:active,
+.control-btn:hover {
+    background-color: var(--color-yellow); /* Цвет меняется на желтый при нажатии */
+}
+
+.item-quantity {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-red);
+    margin: 0 10px;
+}
+
+/* --- ИТОГОВАЯ ЦЕНА --- */
+
+.total-price-section {
+    display: flex;
+    justify-content: flex-end; /* Выравнивание вправо */
+    align-items: baseline;
+    padding: 10px 0;
+    
+    /* <-- КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: Сдвигаем секцию вниз, занимая все свободное место сверху --> */
+    margin-top: auto; 
+    
+    font-size: 18px;
+    color: #333;
+}
+
+.total-label {
+    font-weight: normal;
+    margin-right: 10px;
+}
+
+.total-amount {
+    font-weight: bold;
+    color: var(--color-red);
+    font-size: 22px;
+}
+
+/* --- БЛОК ORDER NOW (Прикреплен к самому низу) --- */
+
+.order-now-link {
+   position: fixed; /* Закрепляем на экране */
+    z-index: 60; /* Самый высокий z-index, чтобы быть поверх всего */
+    bottom: 0; /* Прикрепляем к самому низу */
+
+    /* Центрирование и ограничение ширины, как у .mobile-container */
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 450px;
+}
+
+.order-now-btn {
+    width: 100%;
+    background-color: var(--color-red); /* Исходный цвет */
+    color: white;
+    padding: 20px 0;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.1s;
+    border-radius: 0; /* Чтобы прилипнуть к краям мобильного контейнера */
+}
+
+/* Эффект нажатия (меняет цвет на желтый при клике/наведении) */
+.order-now-btn:active,
+.order-now-btn:hover {
+    background-color: var(--color-yellow); /* Меняет цвет на желтый */
+}
+.go-menu-btn {
+    width: 100%; 
+    color: white;
+    background-color:var(--color-red) ;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    
+
+}
+.go-to-menu {
+   position: fixed; /* Закрепляем на экране */
+    z-index: 60; /* Самый высокий z-index, чтобы быть поверх всего */
+   top: 50px; /* Прикрепляем к самому низу */
+    /* Центрирование и ограничение ширины, как у .mobile-container */
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 450px;
+}
