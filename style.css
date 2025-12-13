@@ -540,3 +540,7 @@ position: fixed;
     width: 100%;
     max-width: 450px;
 }
+.go-menu-btn:active,
+.go-menu-btn:hover {
+    background-color: var(--color-yellow); /* Меняет цвет на желтый */
+}
