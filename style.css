@@ -140,7 +140,9 @@ position: fixed;
 
 /* Скрываем чекбокс, который является триггером */
 #menu-toggle {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Меню по умолчанию скрыто (сдвинуто влево) */
