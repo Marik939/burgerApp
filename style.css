@@ -152,7 +152,7 @@ position: fixed;
     top: 140px; /* Начинается под шапкой */
     left: 0; 
     width: var(--menu-width); /* Ширина 200px */
-
+max-width: 0;
     background: #fff3dc;
     list-style: none;
     padding: 0;
@@ -162,7 +162,9 @@ position: fixed;
     opacity: 0;         /* <-- НЕВИДИМОЕ */
     overflow: hidden;   /* <-- СКРЫВАЕМ СОДЕРЖИМОЕ */
     transform: translateX(-100%);
-    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out; 
+    transition: height 0.3s,
+     ease-in-out, 
+     opacity 0.3s ease-in-out; 
     z-index: 90; 
     border-color:hsl(0, 90%, 28%);
     border-left:hsl(0, 90%, 28%); 
@@ -204,9 +206,10 @@ position: fixed;
 #menu-toggle:checked ~ .dropdown {
     /* Чтобы быть "короче" (как на вашем скриншоте 926616.jpg), 
        используем фиксированную высоту, вмещающую 5-6 пунктов. */
-    height: 200px; /* <--- ИЗМЕНЕНИЕ: Достаточная высота для пунктов */
+    max-height: 200px; /* <--- ИЗМЕНЕНИЕ: Достаточная высота для пунктов */
     opacity: 1; 
     border-radius: 9px;   /* <--- ВИДИМОЕ */
+    transform: translateX(0);
     border-color: brown;
     border-width: 3px;
 }
