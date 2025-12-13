@@ -157,8 +157,7 @@ position: fixed;
     padding: 0;
     margin: 0;
     /* Скрыто по умолчанию: */
-    height: 0;          /* <-- НЕТ ВЫСОТЫ */
-    opacity: 0;         /* <-- НЕВИДИМОЕ */
+    height: 200px;          /* <-- НЕТ ВЫСОТЫ */       /* <-- НЕВИДИМОЕ */
     overflow: hidden;   /* <-- СКРЫВАЕМ СОДЕРЖИМОЕ */
     transform: translateX(-100%);
     transition: height 0.3s,
