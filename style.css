@@ -78,7 +78,7 @@ position: fixed;
     align-items: center;
     justify-content: center;
 }
-.header-btn {
+.header-btn menu button {
     padding: 20px;
     align-self: flex-end;
     color: white;
