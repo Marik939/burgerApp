@@ -141,6 +141,9 @@ position: fixed;
 /* Скрываем чекбокс, который является триггером */
 #menu-toggle {
     display: none;
+     font-weight: bolder;
+    padding: 15px;
+    align-self: flex-end;
    
 }
 
